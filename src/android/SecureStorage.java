@@ -103,7 +103,6 @@ public class SecureStorage extends CordovaPlugin {
             if (!isDeviceSecure()) {
                 Log.e(TAG, MSG_DEVICE_NOT_SECURE);
                 callbackContext.error(MSG_DEVICE_NOT_SECURE);
-                Log.w(TAG, "DEBUG 2");
             } else if (!RSA.isEntryAvailable(alias)) {
                 initContext = callbackContext;
                 unlockCredentials();
