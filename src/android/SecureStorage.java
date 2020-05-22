@@ -187,14 +187,15 @@ public class SecureStorage extends CordovaPlugin {
     }
 
     private boolean isDeviceSecure() {
-        KeyguardManager keyguardManager = (KeyguardManager)(getContext().getSystemService(Context.KEYGUARD_SERVICE));
+        /*KeyguardManager keyguardManager = (KeyguardManager)(getContext().getSystemService(Context.KEYGUARD_SERVICE));
         try {
             Method isSecure = null;
             isSecure = keyguardManager.getClass().getMethod("isDeviceSecure");
             return ((Boolean) isSecure.invoke(keyguardManager)).booleanValue();
         } catch (Exception e) {
             return keyguardManager.isKeyguardSecure();
-        }
+        }*/
+        return true;
     }
 
     private String service2alias(String service) {
