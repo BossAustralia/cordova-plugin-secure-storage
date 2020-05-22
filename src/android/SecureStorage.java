@@ -37,7 +37,6 @@ public class SecureStorage extends CordovaPlugin {
         if (secureDeviceContext != null) {
             if (isDeviceSecure()) {
                 secureDeviceContext.success();
-                Log.w(TAG, "DEBUG: ", secureDeviceContext.success());
             } else {
                 secureDeviceContext.error(MSG_DEVICE_NOT_SECURE);
             }
@@ -107,7 +106,6 @@ public class SecureStorage extends CordovaPlugin {
                 initContext = callbackContext;
                 unlockCredentials();
             } else {
-                
                 initSuccess(callbackContext);
             }
             return true;
@@ -126,7 +124,6 @@ public class SecureStorage extends CordovaPlugin {
                         result.put("key", Base64.encodeToString(aes_key_enc, Base64.DEFAULT));
                         getStorage(service).store(key, result.toString());
                         callbackContext.success(key);
-                        Log.w(TAG, "DEBUG key: ", key);
                     } catch (Exception e) {
                         Log.e(TAG, "Encrypt failed :", e);
                         callbackContext.error(e.getMessage());
