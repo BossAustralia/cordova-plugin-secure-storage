@@ -72,7 +72,7 @@ public class SecureStorage extends CordovaPlugin {
             return false;
         }
         if ("init".equals(action)) {
-            Log.e(TAG, "Valor do getJSONObject:" + args.getJSONObject(1);
+            Log.e(TAG, "Valor do getJSONObject:" + args.getJSONObject(1));
             String service = args.getString(0) + Secure.getString(getContext().getContentResolver(),Secure.ANDROID_ID); 
             JSONObject options = args.getJSONObject(1);
             String packageName = options.optString("packageName", getContext().getPackageName());
