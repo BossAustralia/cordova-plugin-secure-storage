@@ -62,7 +62,11 @@ public class SecureStorage extends CordovaPlugin {
             });
         }
     }
-
+    
+    public String GetDynamicKey(){
+        return "outsystems-key-store";
+    }
+    
     @Override
     public boolean execute(String action, CordovaArgs args, final CallbackContext callbackContext) throws JSONException {
         if(!SUPPORTED){
