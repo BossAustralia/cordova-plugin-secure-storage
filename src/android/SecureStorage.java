@@ -72,7 +72,10 @@ public class SecureStorage extends CordovaPlugin {
             return false;
         }
         if ("init".equals(action)) {
-            String service = Secure.getString(getContext().getContentResolver(),Secure.ANDROID_ID); //args.getString(0);
+            Log.e(TAG, "Valor do arg:" + args.getString(0));
+            Log.e(TAG,  args.getJSONObject(1));
+            Log.e(TAG, "Valor do arg1:" + args.getString(1));
+            String service = args.getString(0);//Secure.getString(getContext().getContentResolver(),Secure.ANDROID_ID); 
             JSONObject options = args.getJSONObject(1);
             String packageName = options.optString("packageName", getContext().getPackageName());
 
@@ -108,7 +111,9 @@ public class SecureStorage extends CordovaPlugin {
             return true;
         }
         if ("set".equals(action)) {
-            final String service = Secure.getString(getContext().getContentResolver(),Secure.ANDROID_ID); //args.getString(0);
+            Log.e(TAG, "Valor do arg:" + args.getString(0));
+            Log.e(TAG, "Valor do arg1:" + args.getString(1));
+            final String service = args.getString(0);//Secure.getString(getContext().getContentResolver(),Secure.ANDROID_ID); 
             final String key = args.getString(1);
             final String value = args.getString(2);
             final String adata = service;
@@ -130,7 +135,9 @@ public class SecureStorage extends CordovaPlugin {
             return true;
         }
         if ("get".equals(action)) {
-            final String service = Secure.getString(getContext().getContentResolver(),Secure.ANDROID_ID); //args.getString(0);
+            Log.e(TAG, "Valor do arg:" + args.getString(0));
+            final String service = args.getString(0);//Secure.getString(getContext().getContentResolver(),Secure.ANDROID_ID); 
+            Log.e(TAG, "Valor do arg1:" + args.getString(1));
             final String key = args.getString(1);
             String value = getStorage(service).fetch(key);
             if (value != null) {
@@ -163,19 +170,22 @@ public class SecureStorage extends CordovaPlugin {
             return true;
         }
         if ("remove".equals(action)) {
-            String service = Secure.getString(getContext().getContentResolver(),Secure.ANDROID_ID); //args.getString(0);
+            Log.e(TAG, "Valor do arg:" + args.getString(0));
+            String service = args.getString(0);//Secure.getString(getContext().getContentResolver(),Secure.ANDROID_ID); 
             String key = args.getString(1);
             getStorage(service).remove(key);
             callbackContext.success(key);
             return true;
         }
         if ("keys".equals(action)) {
-            String service = Secure.getString(getContext().getContentResolver(),Secure.ANDROID_ID); //args.getString(0);
+            Log.e(TAG, "Valor do arg:" + args.getString(0));
+            String service = args.getString(0);//Secure.getString(getContext().getContentResolver(),Secure.ANDROID_ID); 
             callbackContext.success(new JSONArray(getStorage(service).keys()));
             return true;
         }
         if ("clear".equals(action)) {
-            String service = Secure.getString(getContext().getContentResolver(),Secure.ANDROID_ID); //args.getString(0);
+            Log.e(TAG, "Valor do arg:" + args.getString(0));
+            String service = args.getString(0);//Secure.getString(getContext().getContentResolver(),Secure.ANDROID_ID); 
             getStorage(service).clear();
             callbackContext.success();
             return true;
