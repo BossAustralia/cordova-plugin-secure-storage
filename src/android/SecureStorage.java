@@ -35,11 +35,7 @@ public class SecureStorage extends CordovaPlugin {
     @Override
     public void onResume(boolean multitasking) {
         if (secureDeviceContext != null) {
-            if (isDeviceSecure()) {
-                secureDeviceContext.success();
-            } else {
-                secureDeviceContext.error(MSG_DEVICE_NOT_SECURE);
-            }
+            secureDeviceContext.success();
             secureDeviceContext = null;
         }
 
@@ -99,10 +95,10 @@ public class SecureStorage extends CordovaPlugin {
             SharedPreferencesHandler PREFS = new SharedPreferencesHandler(alias, ctx);
             SERVICE_STORAGE.put(service, PREFS);
 
-            if (!isDeviceSecure()) {
+            /*if (!isDeviceSecure()) {
                 Log.e(TAG, MSG_DEVICE_NOT_SECURE);
                 callbackContext.error(MSG_DEVICE_NOT_SECURE);
-            } else if (!RSA.isEntryAvailable(alias)) {
+            } else */if (!RSA.isEntryAvailable(alias)) {
                 initContext = callbackContext;
                 unlockCredentials();
             } else {
