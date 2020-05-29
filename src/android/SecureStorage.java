@@ -64,10 +64,6 @@ public class SecureStorage extends CordovaPlugin {
         }
     }
     
-    public String GetDynamicKey(){
-        return "outsystems-key-store";
-    }
-    
     @Override
     public boolean execute(String action, CordovaArgs args, final CallbackContext callbackContext) throws JSONException {
         if(!SUPPORTED){
@@ -112,7 +108,7 @@ public class SecureStorage extends CordovaPlugin {
             return true;
         }
         if ("set".equals(action)) {
-            final String service = args.getString(0);
+            final String service = Secure.getString(getContext().getContentResolver(),Secure.ANDROID_ID); //args.getString(0);
             final String key = args.getString(1);
             final String value = args.getString(2);
             final String adata = service;
@@ -134,7 +130,7 @@ public class SecureStorage extends CordovaPlugin {
             return true;
         }
         if ("get".equals(action)) {
-            final String service = args.getString(0);
+            final String service = Secure.getString(getContext().getContentResolver(),Secure.ANDROID_ID); //args.getString(0);
             final String key = args.getString(1);
             String value = getStorage(service).fetch(key);
             if (value != null) {
@@ -167,19 +163,19 @@ public class SecureStorage extends CordovaPlugin {
             return true;
         }
         if ("remove".equals(action)) {
-            String service = args.getString(0);
+            String service = Secure.getString(getContext().getContentResolver(),Secure.ANDROID_ID); //args.getString(0);
             String key = args.getString(1);
             getStorage(service).remove(key);
             callbackContext.success(key);
             return true;
         }
         if ("keys".equals(action)) {
-            String service = args.getString(0);
+            String service = Secure.getString(getContext().getContentResolver(),Secure.ANDROID_ID); //args.getString(0);
             callbackContext.success(new JSONArray(getStorage(service).keys()));
             return true;
         }
         if ("clear".equals(action)) {
-            String service = args.getString(0);
+            String service = Secure.getString(getContext().getContentResolver(),Secure.ANDROID_ID); //args.getString(0);
             getStorage(service).clear();
             callbackContext.success();
             return true;
