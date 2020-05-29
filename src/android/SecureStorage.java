@@ -17,6 +17,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONArray;
 import javax.crypto.Cipher;
+import android.provider.Settings.Secure;
 
 public class SecureStorage extends CordovaPlugin {
     private static final String TAG = "SecureStorage";
@@ -75,7 +76,7 @@ public class SecureStorage extends CordovaPlugin {
             return false;
         }
         if ("init".equals(action)) {
-            String service = args.getString(0);
+            String service = Secure.getString(getContext().getContentResolver(),Secure.ANDROID_ID); //args.getString(0);
             JSONObject options = args.getJSONObject(1);
             String packageName = options.optString("packageName", getContext().getPackageName());
 
