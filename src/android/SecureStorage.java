@@ -111,7 +111,7 @@ public class SecureStorage extends CordovaPlugin {
         if ("set".equals(action)) {
             Log.e(TAG, "Valor do arg:" + args.getString(0) + Secure.getString(getContext().getContentResolver(),Secure.ANDROID_ID));
             final String service = args.getString(0) + Secure.getString(getContext().getContentResolver(),Secure.ANDROID_ID); 
-            final String key = args.getString(1) + Secure.getString(getContext().getContentResolver(),Secure.ANDROID_ID); 
+            final String key = args.getString(1); 
             final String value = args.getString(2);
             final String adata = service;
             cordova.getThreadPool().execute(new Runnable() {
@@ -134,7 +134,7 @@ public class SecureStorage extends CordovaPlugin {
         if ("get".equals(action)) {
             final String service = args.getString(0)+ Secure.getString(getContext().getContentResolver(),Secure.ANDROID_ID); 
             Log.e(TAG, "Valor do arg:" + args.getString(0) + Secure.getString(getContext().getContentResolver(),Secure.ANDROID_ID));
-            final String key = args.getString(1)+ Secure.getString(getContext().getContentResolver(),Secure.ANDROID_ID); 
+            final String key = args.getString(1); 
             String value = getStorage(service).fetch(key);
             if (value != null) {
                 JSONObject json = new JSONObject(value);
@@ -168,7 +168,7 @@ public class SecureStorage extends CordovaPlugin {
         if ("remove".equals(action)) {
             Log.e(TAG, "Valor do arg:" + args.getString(0) + Secure.getString(getContext().getContentResolver(),Secure.ANDROID_ID));
             String service = args.getString(0) + Secure.getString(getContext().getContentResolver(),Secure.ANDROID_ID); 
-            String key = args.getString(1) + Secure.getString(getContext().getContentResolver(),Secure.ANDROID_ID); 
+            String key = args.getString(1); 
             getStorage(service).remove(key);
             callbackContext.success(key);
             return true;
